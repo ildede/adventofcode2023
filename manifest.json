@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Advent of Code 2023",
+    "description": "A way to solve each day directly in your browser",
+    "icons": {
+        "16": "icons/hat-16.png",
+        "32": "icons/hat-32.png",
+        "48": "icons/hat-48.png",
+        "128": "icons/hat-128.png"
+    },
+    "version": "0.1",
+    "action": {
+        "default_popup": "src/popup/index.html"
+    },
+    "permissions": [
+        "scripting",
+        "activeTab"
+    ]
+}
