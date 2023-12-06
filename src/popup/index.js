@@ -27,21 +27,18 @@ document.getElementById('day1-B').addEventListener('click', () => {
         }).then((response) => {
             const splitted = splitLines(response[0].result);
             const result = splitted
-                .map((e) => e.replaceAll(/one/g, '1'))
-                .map((e) => e.replaceAll(/two/g, '2'))
-                .map((e) => e.replaceAll(/three/g, '3'))
-                .map((e) => e.replaceAll(/four/g, '4'))
-                .map((e) => e.replaceAll(/five/g, '5'))
-                .map((e) => e.replaceAll(/six/g, '6'))
-                .map((e) => e.replaceAll(/seven/g, '7'))
-                .map((e) => e.replaceAll(/eight/g, '8'))
-                .map((e) => e.replaceAll(/nine/g, '9'))
+                .map((e) => e.replaceAll(/one/g, 'o1e'))
+                .map((e) => e.replaceAll(/two/g, 't2o'))
+                .map((e) => e.replaceAll(/three/g, 't3e'))
+                .map((e) => e.replaceAll(/four/g, 'f4r'))
+                .map((e) => e.replaceAll(/five/g, 'f5e'))
+                .map((e) => e.replaceAll(/six/g, 's6x'))
+                .map((e) => e.replaceAll(/seven/g, 's7n'))
+                .map((e) => e.replaceAll(/eight/g, 'e8t'))
+                .map((e) => e.replaceAll(/nine/g, 'n9e'))
                 .map((e) => e.replaceAll(/[a-z]/g, ''))
                 .map((e) => e ? `${e[0]}${e[e.length-1]}` : '')
-                .reduce((accumulator, currentValue) => {
-                    console.log(currentValue);
-                    return (currentValue ? accumulator + Number(currentValue) : accumulator);
-                }, 0);
+                .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
             document.getElementById("resultB").innerText = `${result}`;
         });
     });
