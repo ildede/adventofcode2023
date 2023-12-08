@@ -16,8 +16,8 @@ chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
                     chrome.scripting.executeScript({
                         target: {tabId: currentTab.id},
                         func: readInput,
-                    }).then((response) => {
-                        const result = solvers[currentDay][part](response[0].result);
+                    }).then(async (response) => {
+                        const result = await solvers[currentDay][part](response[0].result);
                         document.getElementById(`result-${part}`).innerText = `${result}`;
                     });
                 });

@@ -1,11 +1,13 @@
 import {splitLines} from "./utils.js";
+import init, { day_2_part_a } from "./wasm/adv2023_lib.js";
 
 export const solvers = [
     {}, // Day 0
-    { a: day1partA, b: day1partB }
+    { a: day1partA, b: day1partB },
+    { a: day2partA },
 ]
 
-function day1partA(input) {
+async function day1partA(input) {
     const splitted = splitLines(input);
     const result = splitted
         .map((e) => e.replaceAll(/[a-z]/g, ''))
@@ -15,7 +17,7 @@ function day1partA(input) {
     return result;
 }
 
-function day1partB(input) {
+async function day1partB(input) {
     const splitted = splitLines(input);
     const result = splitted
                 .map((e) => e.replaceAll(/one/g, 'o1e'))
@@ -32,4 +34,8 @@ function day1partB(input) {
                 .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
     
     return result;
+}
+
+async function day2partA(input) {
+    return await init().then(() => day_2_part_a(input));
 }
