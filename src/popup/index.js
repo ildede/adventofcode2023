@@ -1,45 +1,30 @@
-import { readInput, splitLines } from '../utils.js';
+import {readInput} from '../utils.js';
+import {solvers} from '../solvers.js';
 
-document.getElementById('day1-A').addEventListener('click', () => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        const tab = tabs[0];
-
-        chrome.scripting.executeScript({
-            target: {tabId: tab.id},
-            func: readInput,
-        }).then((response) => {
-            const splitted = splitLines(response[0].result);
-            const result = splitted
-                .map((e) => e.replaceAll(/[a-z]/g, ''))
-                .map((e) => e ? `${e[0]}${e[e.length-1]}` : '')
-                .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
-            document.getElementById("resultA").innerText = `${result}`;
+chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+    const currentTab = tabs[0];
+    const currentUrl = currentTab?.url || '';
+    if (currentUrl.startsWith("https://adventofcode.com/2023")) {
+        const currentDay = currentUrl
+            .replace('https://adventofcode.com/2023/', '')
+            .split('/')[1];
+        document.querySelector('#day').innerText = `Day ${currentDay}`;
+        document.querySelectorAll('.solver-btn').forEach((b) => {
+            const part = b.getAttribute('data-part');
+            if (solvers[currentDay]?.[part]) {
+                b.addEventListener('click', () => {
+                    chrome.scripting.executeScript({
+                        target: {tabId: currentTab.id},
+                        func: readInput,
+                    }).then((response) => {
+                        const result = solvers[currentDay][part](response[0].result);
+                        document.getElementById(`result-${part}`).innerText = `${result}`;
+                    });
+                });
+                b.removeAttribute('disabled');
+            }
         });
-    });
-});
-document.getElementById('day1-B').addEventListener('click', () => {
-    chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        const tab = tabs[0];
-
-        chrome.scripting.executeScript({
-            target: {tabId: tab.id},
-            func: readInput,
-        }).then((response) => {
-            const splitted = splitLines(response[0].result);
-            const result = splitted
-                .map((e) => e.replaceAll(/one/g, 'o1e'))
-                .map((e) => e.replaceAll(/two/g, 't2o'))
-                .map((e) => e.replaceAll(/three/g, 't3e'))
-                .map((e) => e.replaceAll(/four/g, 'f4r'))
-                .map((e) => e.replaceAll(/five/g, 'f5e'))
-                .map((e) => e.replaceAll(/six/g, 's6x'))
-                .map((e) => e.replaceAll(/seven/g, 's7n'))
-                .map((e) => e.replaceAll(/eight/g, 'e8t'))
-                .map((e) => e.replaceAll(/nine/g, 'n9e'))
-                .map((e) => e.replaceAll(/[a-z]/g, ''))
-                .map((e) => e ? `${e[0]}${e[e.length-1]}` : '')
-                .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
-            document.getElementById("resultB").innerText = `${result}`;
-        });
-    });
+    } else {
+        document.querySelector('#day').innerText = 'You can use this extension to solve only Advent Of Code 2023';
+    }
 });

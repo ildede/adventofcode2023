@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <body style='width:300px'>
-    <div id='result-div'>
-        <h4>Day 1</h4>
-        <button id='day1-A'>Part A</button>
-        <code id='resultA'></code>
-        <br>
-        <button id='day1-B'>Part B</button>
-        <code id='resultB'></code>
-    </div>
-    <script src='index.js' type='module'></script>
+  <head>
+      <script src='index.js' type='module'></script>
+  </head>
+  <body style='width:250px'>
+
+      <h3><span id='day'>x</span></h3>
+      <button class='solver-btn' data-part='a' disabled>Solve part A</button>
+      <code id='result-a'></code>
+      <br>
+      <button class='solver-btn' data-part='b' disabled>Solve part B</button>
+      <code id='result-b'></code>
+
   </body>
 </html>
