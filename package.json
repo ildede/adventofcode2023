@@ -1,0 +1,13 @@
+{
+	"source": "src/popup/index.html",
+	"scripts": {
+		"watch": "parcel watch",
+		"build": "parcel build"
+	},
+	"devDependencies": {
+		"@parcel/config-default": "^2.10.3",
+		"@types/chrome": "^0.0.254",
+		"parcel": "^2.10.3",
+		"parcel-reporter-static-files-copy": "^1.5.3"
+	}
+}
