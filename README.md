@@ -9,6 +9,9 @@ Move then `pkg/adv2023_lib.js` and `pkg/adv2023_lib_bg.wasm` in the folder `src/
 ## Build extension
 In the root run `pnpm build`
 
+## Build all at once
+If you use [taskfile](https://taskfile.dev/), you can directly run `task build` in the root of the project.
+
 ## To test it
 - Build the extension
 - Go to `chrome://extensions/`

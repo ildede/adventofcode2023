@@ -1,19 +1,20 @@
 {
-	"scripts": {
-		"build": "parcel build ./src/popup/index.html"
-	},
-	"devDependencies": {
-		"@parcel/config-default": "^2.10.3",
-		"@types/chrome": "^0.0.254",
-		"parcel": "^2.10.3",
-		"parcel-reporter-static-files-copy": "^1.5.3",
-		"typescript": "^5.3.3"
-	},
-	"pnpm": {
-		"peerDependencyRules": {
-			"allowedVersions": {
-				"svgo": "2.8.0"
-			}
-		}
-	}
+  "source": "src/popup/index.html",
+  "scripts": {
+    "build": "parcel build --public-url ./"
+  },
+  "devDependencies": {
+    "@parcel/config-default": "^2.10.3",
+    "@types/chrome": "^0.0.254",
+    "parcel": "^2.10.3",
+    "parcel-reporter-static-files-copy": "^1.5.3",
+    "typescript": "^5.3.3"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "svgo": "2.8.0"
+      }
+    }
+  }
 }

@@ -1,0 +1,37 @@
+version: '3'
+
+tasks:
+  test:
+    dir: 'adv2023-lib'
+    cmds:
+      - cargo test
+
+  clean:rust:
+    dir: 'adv2023-lib'
+    cmds:
+      - rm -r pkg/*
+      - rm -r target/*
+
+  clean:ts:
+    cmds:
+      - rm -r dist/*
+
+  clean:
+    cmds:
+      - task: clean:rust
+      - task: clean:ts
+
+  build:rust:
+    dir: 'adv2023-lib'
+    cmds:
+      - wasm-pack build --target web --no-pack
+      - cp pkg/adv2023_lib* ../src/wasm/
+
+  build:ts:
+    cmd: pnpm run build
+
+  build:
+    cmds:
+      - task: clean
+      - task: build:rust
+      - task: build:ts
