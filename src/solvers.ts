@@ -1,21 +1,26 @@
-import {splitLines} from "./utils.js";
-import init, { day_2_part_a, day_2_part_b } from "./wasm/adv2023_lib.js";
+import {splitLines} from "./utils";
+import init, { day_2_part_a, day_2_part_b } from "./wasm/adv2023_lib";
 
-export const solvers = [
+interface Solver {
+    a?: (input: string) => Promise<string|number>,
+    b?: (input: string) => Promise<string|number>;
+}
+
+export const solvers: Solver[]  = [
     {}, // Day 0
     { a: day1partA, b: day1partB },
     { a: day2partA, b: day2partB },
 ]
 
-async function day1partA(input) {
+async function day1partA(input: string): Promise<number> {
     const splitted = splitLines(input);
     return splitted
-        .map((e) => e.replaceAll(/[a-z]/g, ''))
-        .map((e) => e ? `${e[0]}${e[e.length - 1]}` : '')
+        .map((e: string) => e.replaceAll(/[a-z]/g, ''))
+        .map((e: string) => e ? `${e[0]}${e[e.length - 1]}` : '')
         .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
 }
 
-async function day1partB(input) {
+async function day1partB(input: string): Promise<number> {
     const splitted = splitLines(input);
     return splitted
                 .map((e) => e.replaceAll(/one/g, 'o1e'))
@@ -32,10 +37,10 @@ async function day1partB(input) {
                 .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
 }
 
-async function day2partA(input) {
+async function day2partA(input: string): Promise<string> {
     return await init().then(() => day_2_part_a(input));
 }
 
-async function day2partB(input) {
+async function day2partB(input: string): Promise<string> {
     return await init().then(() => day_2_part_b(input));
 }

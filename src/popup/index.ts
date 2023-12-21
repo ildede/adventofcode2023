@@ -1,5 +1,5 @@
-import {readInput} from '../utils.js';
-import {solvers} from '../solvers.js';
+import {readInput} from '../utils';
+import {solvers} from '../solvers';
 
 chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     const currentTab = tabs[0];
