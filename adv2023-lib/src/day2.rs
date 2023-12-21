@@ -8,11 +8,19 @@ pub fn solve_part_a(input: &str) -> String {
     let result = input
         .lines()
         .map(to_game_info)
-        .filter(|g| {
-            println!("{:?}", g);
-            is_possible(g)
-        })
+        .filter(is_possible)
         .map(|g| g.id)
+        .sum::<u32>();
+
+    result.to_string()
+}
+
+pub fn solve_part_b(input: &str) -> String {
+    let result = input
+        .lines()
+        .map(to_game_info)
+        .map(min_cubes_to_play)
+        .map(to_power_of_game)
         .sum::<u32>();
 
     result.to_string()
@@ -31,6 +39,18 @@ fn is_possible(game: &GameInfo) -> bool {
         }
     }
     true
+}
+
+fn min_cubes_to_play(game: GameInfo) -> Show {
+    Show {
+        red: game.shows.iter().map(|s| s.red).max().unwrap_or(0),
+        green: game.shows.iter().map(|s| s.green).max().unwrap_or(0),
+        blue: game.shows.iter().map(|s| s.blue).max().unwrap_or(0),
+    }
+}
+
+fn to_power_of_game(show: Show) -> u32 {
+    show.red * show.green * show.blue
 }
 
 #[derive(Debug, PartialEq)]

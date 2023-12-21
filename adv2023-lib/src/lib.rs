@@ -6,3 +6,8 @@ mod day2;
 pub fn day_2_part_a(input: &str) -> String {
     day2::solve_part_a(input)
 }
+
+#[wasm_bindgen]
+pub fn day_2_part_b(input: &str) -> String {
+    day2::solve_part_b(input)
+}

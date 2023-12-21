@@ -1,25 +1,23 @@
 import {splitLines} from "./utils.js";
-import init, { day_2_part_a } from "./wasm/adv2023_lib.js";
+import init, { day_2_part_a, day_2_part_b } from "./wasm/adv2023_lib.js";
 
 export const solvers = [
     {}, // Day 0
     { a: day1partA, b: day1partB },
-    { a: day2partA },
+    { a: day2partA, b: day2partB },
 ]
 
 async function day1partA(input) {
     const splitted = splitLines(input);
-    const result = splitted
+    return splitted
         .map((e) => e.replaceAll(/[a-z]/g, ''))
         .map((e) => e ? `${e[0]}${e[e.length - 1]}` : '')
         .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
-
-    return result;
 }
 
 async function day1partB(input) {
     const splitted = splitLines(input);
-    const result = splitted
+    return splitted
                 .map((e) => e.replaceAll(/one/g, 'o1e'))
                 .map((e) => e.replaceAll(/two/g, 't2o'))
                 .map((e) => e.replaceAll(/three/g, 't3e'))
@@ -32,10 +30,12 @@ async function day1partB(input) {
                 .map((e) => e.replaceAll(/[a-z]/g, ''))
                 .map((e) => e ? `${e[0]}${e[e.length - 1]}` : '')
                 .reduce((accumulator, currentValue) => currentValue ? accumulator + Number(currentValue) : accumulator, 0);
-    
-    return result;
 }
 
 async function day2partA(input) {
     return await init().then(() => day_2_part_a(input));
+}
+
+async function day2partB(input) {
+    return await init().then(() => day_2_part_b(input));
 }

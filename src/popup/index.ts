@@ -8,7 +8,7 @@ chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         const currentDay = currentUrl
             .replace('https://adventofcode.com/2023/', '')
             .split('/')[1];
-        document.querySelector('#day').innerText = `Day ${currentDay}`;
+        document.querySelector<HTMLElement>('#day').innerText = `Day ${currentDay}`;
         document.querySelectorAll('.solver-btn').forEach((b) => {
             const part = b.getAttribute('data-part');
             if (solvers[currentDay]?.[part]) {
@@ -25,6 +25,6 @@ chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
             }
         });
     } else {
-        document.querySelector('#day').innerText = 'You can use this extension to solve only Advent Of Code 2023';
+        document.querySelector<HTMLElement>('#day').innerText = 'You can use this extension to solve only Advent Of Code 2023';
     }
 });
