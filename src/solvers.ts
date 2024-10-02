@@ -1,5 +1,5 @@
 import {splitLines} from "./utils";
-import init, { day_2_part_a, day_2_part_b } from "./wasm/adv2023_lib";
+import init, { day_2_part_a, day_2_part_b, day_3_part_a } from "./wasm/adv2023_lib";
 
 interface Solver {
     a?: (input: string) => Promise<string|number>,
@@ -10,6 +10,7 @@ export const solvers: Solver[]  = [
     {}, // Day 0
     { a: day1partA, b: day1partB },
     { a: day2partA, b: day2partB },
+    { a: day3partA },
 ]
 
 async function day1partA(input: string): Promise<number> {
@@ -43,4 +44,8 @@ async function day2partA(input: string): Promise<string> {
 
 async function day2partB(input: string): Promise<string> {
     return await init().then(() => day_2_part_b(input));
+}
+
+async function day3partA(input: string): Promise<string> {
+    return await init().then(() => day_3_part_a(input));
 }
